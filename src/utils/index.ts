@@ -75,3 +75,15 @@ export function stringifyArgs(args: any[]): string[] {
     }
   })
 }
+
+export function getTimestamp(): string {
+  if (globalThis.performance && globalThis.performance.now) {
+    return (globalThis.performance.timeOrigin + globalThis.performance.now()).toFixed(2)
+  }
+  const now = Date.now()
+  if (globalThis.process && globalThis.process.hrtime) {
+    const hrtime = globalThis.process.hrtime()
+    return (now + hrtime[1] / 1000000).toFixed(2)
+  }
+  return now.toFixed(2)
+}
