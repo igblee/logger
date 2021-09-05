@@ -6,7 +6,7 @@ import resolve from 'rollup-plugin-node-resolve';
 
 const global = `var process = {
   env: {
-    NODE_ENV: 'development'
+    NODE_ENV: 'production'
   }
 }`
 

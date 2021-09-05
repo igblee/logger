@@ -7,3 +7,10 @@ interface ILoggerConfigOption {
 }
 
 type SeverityKey = Partial<keyof typeof Severity>
+
+interface ILoggerPluginOption {
+  exclude?: string;
+  include?: string;
+  name: string;
+  sourceMap?: string | boolean;
+}
