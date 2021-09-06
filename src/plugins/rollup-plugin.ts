@@ -14,7 +14,6 @@ export default function LoggerPlugin(option: ILoggerPluginOption = defaultOption
   return {
     name: 'logger-plugin',
     transform(code: string, id: string) {
-      console.log(`[app debug] ~ file: rollup-plugin.ts ~ line 17 ~ transform ~ id`, id)
       if (!filter(id)) return null;
 			let magicString = new MagicString(code);
       const ast = esprima.parseScript(code, {
@@ -23,7 +22,6 @@ export default function LoggerPlugin(option: ILoggerPluginOption = defaultOption
         loc: true,
         attachComment: true,
         comment: true,
-        tokens: true,
         tolerant: true
       })
       const positionHolderNodesMap = new Map()
@@ -49,7 +47,6 @@ export default function LoggerPlugin(option: ILoggerPluginOption = defaultOption
                 const positionString = `'[f:${filename};l:${position?.line};c:${position?.column};]'`
                 magicString.overwrite(start, end, positionString + ', ' + originArgsString);
               }
-            return this.skip();
           }
           return node
         }
